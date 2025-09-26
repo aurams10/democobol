@@ -1,0 +1,22 @@
+resources:
+  repositories:
+    - repository: frontend
+      type: github
+      name: usuario/frontend-repo
+    - repository: backend
+      type: git
+      name: gitlab.com/usuario/backend-repo.git
+      endpoint: gitlab-connection
+
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - checkout: frontend
+  - checkout: backend
+  - script: echo "Construyendo frontend y backend juntos"
